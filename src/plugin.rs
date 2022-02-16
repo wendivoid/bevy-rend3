@@ -4,7 +4,7 @@ use bevy_utils::tracing::error;
 use rend3::types::Camera;
 use rend3_routine::base::BaseRenderGraph;
 
-use crate::{Surfaces, AmbientLight, Skyboxes};
+use crate::{Surfaces, AmbientLight, SkyBoxes};
 
 #[derive(Debug, PartialEq, Clone, Copy, Hash, Eq, SystemLabel)]
 pub enum RenderSystem {
@@ -34,7 +34,7 @@ impl Plugin for Rend3Plugin {
             }
         }
         app.init_resource::<Surfaces>()
-            .init_resource::<Skyboxes>()
+            .init_resource::<SkyBoxes>()
             .init_resource::<Camera>()
             .init_resource::<AmbientLight>()
             .add_system(crate::systems::create_surface)

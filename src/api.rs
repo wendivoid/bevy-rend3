@@ -6,7 +6,7 @@ use rend3::types::{Camera, CameraProjection, DirectionalLight, Material, Materia
 use routine::base::BaseRenderGraph;
 use routine::skybox::SkyboxRoutine;
 
-use crate::{Renderer, Instance, Device, Adapter, Rend3Handle, Skyboxes, Skybox};
+use crate::{Renderer, Instance, Device, Adapter, Rend3Handle, SkyBoxes, Skybox};
 
 #[derive(SystemParam)]
 pub struct Rend3<'w, 's> {
@@ -44,7 +44,7 @@ impl <'w, 's>Rend3<'w, 's> {
 #[derive(SystemParam)]
 pub struct Rend3Skybox<'w, 's> {
     renderer: Res<'w, Renderer>,
-    skyboxes: ResMut<'w, Skyboxes>,
+    skyboxes: ResMut<'w, SkyBoxes>,
     base_render_graph: Res<'w, BaseRenderGraph>,
     #[system_param(ignore)]
     _phantom: std::marker::PhantomData<&'s ()>
@@ -55,12 +55,12 @@ impl <'w, 's> Rend3Skybox<'w, 's> {
         self.set_surface_texture(WindowId::primary(), handle);
     }
     pub fn set_surface_texture(&mut self, window_id: WindowId, handle: ResourceHandle<Texture>) {
-        if let Some(skybox) = self.skyboxes.skyboxes.get_mut(&window_id) {
+        if let Some(skybox) = self.skyboxes.sky_boxes.get_mut(&window_id) {
             skybox.routine.set_background_texture(Some(handle));
         } else {
             let mut skybox = SkyboxRoutine::new(&self.renderer.0, &self.base_render_graph.interfaces);
             skybox.set_background_texture(Some(handle.clone()));
-            self.skyboxes.skyboxes.insert(window_id, Skybox {
+            self.skyboxes.sky_boxes.insert(window_id, Skybox {
                 routine: skybox,
                 texture: Some(Rend3Handle(handle))
             });

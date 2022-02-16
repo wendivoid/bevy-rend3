@@ -4,7 +4,7 @@ use bevy_window::Windows;
 use rend3_routine::base::BaseRenderGraph;
 use rend3_routine::pbr::PbrRoutine;
 
-use crate::{Renderer, Surfaces, Surface, AmbientLight, Skyboxes};
+use crate::{Renderer, Surfaces, Surface, AmbientLight, SkyBoxes};
 
 pub fn render_surface(
     renderer: Res<Renderer>,
@@ -12,7 +12,7 @@ pub fn render_surface(
     base_render_graph: Res<BaseRenderGraph>,
     pbr_routine: Res<PbrRoutine>,
     windows: Res<Windows>,
-    skyboxes: Res<Skyboxes>,
+    skyboxes: Res<SkyBoxes>,
     ambient: Res<AmbientLight>
 ) {
     for (id, Surface { surface, tone_mapping, .. }) in surfaces.surfaces.iter() {
@@ -30,7 +30,7 @@ pub fn render_surface(
             &mut graph,
             &ready,
             &pbr_routine,
-            skyboxes.skyboxes.get(id).map(|x|&x.routine),
+            skyboxes.sky_boxes.get(id).map(|x|&x.routine),
             &tone_mapping,
             UVec2::new(window.width() as u32, window.height() as u32),
             rend3::types::SampleCount::One,

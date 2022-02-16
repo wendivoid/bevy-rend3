@@ -14,7 +14,7 @@ pub use self::plugin::Rend3Plugin;
 pub use self::ambient::AmbientLight;
 pub use self::api::{Rend3, Rend3Camera, Rend3Skybox};
 pub use self::surface::{Surface, Surfaces};
-pub use self::skyboxes::{Skybox, Skyboxes};
+pub use self::skyboxes::{Skybox, SkyBoxes};
 
 use std::sync::Arc;
 use pollster::block_on;

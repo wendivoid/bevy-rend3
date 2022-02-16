@@ -11,6 +11,6 @@ pub struct Skybox {
 }
 
 #[derive(Default)]
-pub struct Skyboxes {
-    pub skyboxes: HashMap<WindowId, Skybox>
+pub struct SkyBoxes {
+    pub sky_boxes: HashMap<WindowId, Skybox>
 }
