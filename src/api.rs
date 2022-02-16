@@ -3,8 +3,10 @@ use bevy_ecs::system::SystemParam;
 use bevy_math::Mat4;
 use bevy_window::WindowId;
 use rend3::types::{Camera, CameraProjection, DirectionalLight, Material, MaterialTag, Mesh, Object, ResourceHandle, Texture};
+use routine::base::BaseRenderGraph;
+use routine::skybox::SkyboxRoutine;
 
-use crate::{Renderer, Instance, Device, Adapter, Rend3Handle, Skyboxes};
+use crate::{Renderer, Instance, Device, Adapter, Rend3Handle, Skyboxes, Skybox};
 
 #[derive(SystemParam)]
 pub struct Rend3<'w, 's> {
@@ -41,7 +43,9 @@ impl <'w, 's>Rend3<'w, 's> {
 
 #[derive(SystemParam)]
 pub struct Rend3Skybox<'w, 's> {
+    renderer: Res<'w, Renderer>,
     skyboxes: ResMut<'w, Skyboxes>,
+    base_render_graph: Res<'w, BaseRenderGraph>,
     #[system_param(ignore)]
     _phantom: std::marker::PhantomData<&'s ()>
 }
@@ -53,6 +57,13 @@ impl <'w, 's> Rend3Skybox<'w, 's> {
     pub fn set_surface_texture(&mut self, window_id: WindowId, handle: ResourceHandle<Texture>) {
         if let Some(skybox) = self.skyboxes.skyboxes.get_mut(&window_id) {
             skybox.routine.set_background_texture(Some(handle));
+        } else {
+            let mut skybox = SkyboxRoutine::new(&self.renderer.0, &self.base_render_graph.interfaces);
+            skybox.set_background_texture(Some(handle.clone()));
+            self.skyboxes.skyboxes.insert(window_id, Skybox {
+                routine: skybox,
+                texture: Some(Rend3Handle(handle))
+            });
         }
     }
 }

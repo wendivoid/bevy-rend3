@@ -5,7 +5,6 @@ use bevy_utils::tracing::debug;
 use bevy_window::WindowCreated;
 use bevy_winit::WinitWindows;
 use rend3_routine::base::BaseRenderGraph;
-use rend3_routine::skybox::SkyboxRoutine;
 use rend3_routine::tonemapping::TonemappingRoutine;
 
 use crate::{Rend3, Surface, Surfaces};
@@ -38,11 +37,8 @@ pub fn create_surface(
         let tone_mapping =
             TonemappingRoutine::new(&rend3.renderer.0, &base_render_graph.interfaces, format);
 
-        let skybox = SkyboxRoutine::new(&rend3.renderer.0, &base_render_graph.interfaces);
-
         surfaces.surfaces.insert(*id, Surface {
             surface, format, tone_mapping,
-            skybox
         });
     }
 }

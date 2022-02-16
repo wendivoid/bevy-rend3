@@ -7,7 +7,7 @@ use crate::Rend3Handle;
 
 pub struct Skybox {
     pub routine: SkyboxRoutine,
-    pub texture: Rend3Handle<Texture>
+    pub texture: Option<Rend3Handle<Texture>>
 }
 
 #[derive(Default)]

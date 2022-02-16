@@ -1,10 +1,19 @@
-use bevy::prelude::*;
-use bevy_rend3::{Rend3Camera, Rend3, Rend3Plugin, Rend3Handle};
+use bevy::app::prelude::*;
+use bevy::ecs::prelude::*;
+use bevy::core::prelude::*;
+use bevy::math::prelude::*;
+use bevy::transform::prelude::*;
+use rend3::types::Mesh;
+use rend3_routine::pbr::PbrMaterial;
+use bevy_rend3::{Rend3Camera, Rend3, Rend3Plugin};
+
+mod common;
 
 fn main() {
     App::new()
-        .add_plugins(DefaultPlugins)
+        .add_plugins(bevy::DefaultPlugins)
         .add_plugin(Rend3Plugin)
+        .add_plugin(common::ExamplePlugin)
         .add_startup_system(spawn_environment)
         .add_startup_system(spawn_cube)
         .run()
@@ -20,7 +29,7 @@ fn spawn_environment(
         intensity: 4.0,
         // Direction will be normalized
         direction: Vec3::new(-1.0, -4.0, 2.0),
-        distance: 20.0,
+        distance: 400.0,
     };
 
     commands.spawn_bundle((
@@ -38,20 +47,20 @@ fn spawn_cube(
     rend3: Rend3,
     mut commands: Commands
 ) {
-    let (mesh, material) = load_gltf(&rend3.renderer.0, "examples/resources/rend3.glb");
+    let (mesh, material) = load_gltf("examples/resources/rend3.glb");
     commands.spawn_bundle((
+        common::Rotates,
         Transform::identity(),
         GlobalTransform::identity(),
-        Rend3Handle(mesh),
-        Rend3Handle(material)
+        rend3.add_mesh(mesh),
+        rend3.add_material(material)
     ));
 }
 
 
 fn load_gltf(
-    renderer: &rend3::Renderer,
     path: &'static str,
-) -> (rend3::types::MeshHandle, rend3::types::MaterialHandle) {
+) -> (Mesh, PbrMaterial) {
     let (doc, datas, _) = gltf::import(path).unwrap();
     let mesh_data = doc.meshes().next().expect("no meshes in data.glb");
 
@@ -83,16 +92,13 @@ fn load_gltf(
         .build()
         .unwrap();
 
-    // Add mesh to renderer's world
-    let mesh_handle = renderer.add_mesh(mesh);
-
     // Add basic material with all defaults except a single color.
     let material = primitive.material();
     let metallic_roughness = material.pbr_metallic_roughness();
-    let material_handle = renderer.add_material(rend3_routine::pbr::PbrMaterial {
+    let material = rend3_routine::pbr::PbrMaterial {
         albedo: rend3_routine::pbr::AlbedoComponent::Value(metallic_roughness.base_color_factor().into()),
         ..Default::default()
-    });
+    };
 
-    (mesh_handle, material_handle)
+    (mesh, material)
 }
