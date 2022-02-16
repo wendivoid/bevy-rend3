@@ -1,0 +1,18 @@
+use std::sync::Arc;
+use bevy_utils::HashMap;
+use bevy_window::WindowId;
+use rend3::types::TextureFormat;
+use rend3_routine::skybox::SkyboxRoutine;
+use rend3_routine::tonemapping::TonemappingRoutine;
+
+pub struct Surface {
+    pub surface: Arc<wgpu::Surface>,
+    pub format: TextureFormat,
+    pub tone_mapping: TonemappingRoutine,
+    pub skybox: SkyboxRoutine
+}
+
+#[derive(Default)]
+pub struct Surfaces {
+    pub surfaces: HashMap<WindowId, Surface>
+}
