@@ -1,4 +1,4 @@
-use bevy::math::prelude::*;
+use bevy_math::prelude::*;
 use rend3_routine::pbr::{AlbedoComponent, PbrMaterial};
 
 pub fn teal_material() -> PbrMaterial {

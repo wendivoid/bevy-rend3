@@ -1,4 +1,7 @@
-use bevy::prelude::*;
+use bevy_ecs::prelude::*;
+use bevy_math::prelude::*;
+use bevy_core::prelude::*;
+use bevy_transform::prelude::*;
 
 #[derive(Component)]
 pub struct Rotates;

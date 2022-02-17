@@ -1,4 +1,4 @@
-use bevy::math::prelude::*;
+use bevy_math::prelude::*;
 
 fn vertex(pos: [f32; 3]) -> Vec3 {
     Vec3::from(pos)

@@ -20,8 +20,6 @@ rend3-routine = "0.3.0"
 
 [dev-dependencies]
 image = "0.24.0"
-
-[dev-dependencies.bevy]
-version = "0.6.0"
-default-features = false
-features = ["x11"]
+bevy_core = "0.6.0"
+bevy_input = "0.6.0"
+bevy_winit = { version = "0.6.0", features = ["x11"] }

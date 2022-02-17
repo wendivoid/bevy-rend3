@@ -1,12 +1,15 @@
-use bevy::prelude::*;
-use bevy_rend3::{Rend3Camera, Rend3, Rend3Skybox, Rend3Plugin};
+use bevy_app::prelude::*;
+use bevy_math::prelude::*;
+use bevy_core::prelude::*;
+use bevy_ecs::prelude::*;
+use bevy_transform::prelude::*;
+use bevy_rend3::{Rend3Camera, Rend3, Rend3Skybox};
 
 mod common;
 
 fn main() {
     App::new()
-        .add_plugins(DefaultPlugins)
-        .add_plugin(Rend3Plugin)
+        .add_plugins(common::ExamplePlugins)
         .add_startup_system(spawn_environment)
         .add_startup_system(spawn_cube)
         .run()
@@ -73,6 +76,7 @@ fn spawn_cube(
     mut commands: Commands
 ) {
     commands.spawn_bundle((
+        common::Rotates,
         Transform::identity(),
         GlobalTransform::identity(),
         rend3.add_mesh(common::cube_mesh()),

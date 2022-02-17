@@ -1,14 +1,15 @@
-use bevy::prelude::*;
-use rend3_routine::pbr::{PbrMaterial, AlbedoComponent};
-use bevy_rend3::{Rend3Camera, Rend3, Rend3Plugin};
+use bevy_app::prelude::*;
+use bevy_ecs::prelude::*;
+use bevy_math::prelude::*;
+use bevy_core::prelude::*;
+use bevy_transform::prelude::*;
+use bevy_rend3::{Rend3Camera, Rend3};
 
 mod common;
 
 fn main() {
     App::new()
-        .add_plugins(DefaultPlugins)
-        .add_plugin(Rend3Plugin)
-        .add_plugin(common::ExamplePlugin)
+        .add_plugins(common::ExamplePlugins)
         .add_startup_system(spawn_environment)
         .add_startup_system(spawn_cube)
         .run()
