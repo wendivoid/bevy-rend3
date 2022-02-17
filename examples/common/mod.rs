@@ -23,13 +23,17 @@ pub struct ExamplePlugins;
 
 impl PluginGroup for ExamplePlugins {
     fn build(&mut self, app: &mut PluginGroupBuilder) {
-        app.add(bevy_rend3::Rend3Plugin);
+        app.add(bevy_log::LogPlugin::default());
         app.add(bevy_core::CorePlugin);
+        app.add(bevy_diagnostic::DiagnosticsPlugin::default());
+        app.add(bevy_diagnostic::FrameTimeDiagnosticsPlugin::default());
+        app.add(bevy_diagnostic::LogDiagnosticsPlugin::default());
         app.add(bevy_input::InputPlugin::default());
         app.add(bevy_app::ScheduleRunnerPlugin::default());
         app.add(bevy_window::WindowPlugin::default());
         app.add(bevy_winit::WinitPlugin::default());
         app.add(bevy_transform::TransformPlugin::default());
+        app.add(bevy_rend3::Rend3Plugin);
         app.add(ExamplePlugin);
     }
 }
