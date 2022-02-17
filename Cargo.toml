@@ -23,5 +23,6 @@ image = "0.24.0"
 bevy_log = "0.6.0"
 bevy_core = "0.6.0"
 bevy_input = "0.6.0"
+rend3-gltf = "0.3.0"
 bevy_diagnostic = "0.6.0"
 bevy_winit = { version = "0.6.0", features = ["x11"] }
