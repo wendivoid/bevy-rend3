@@ -88,7 +88,6 @@ fn load_gltf(
         .with_vertex_tangents(vertex_tangents)
         .with_vertex_uv0(vertex_uvs)
         .with_indices(indices)
-        .with_flip_winding_order()
         .build()
         .unwrap();
 
