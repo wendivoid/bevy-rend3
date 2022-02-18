@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [features]
-default = ["x11"]
+default = []
 x11 = ["bevy_winit/x11"]
 wayland = ["bevy_winit/wayland"]
 
