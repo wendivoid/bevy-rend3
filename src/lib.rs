@@ -8,10 +8,12 @@ mod handle;
 mod api;
 mod ambient;
 mod skyboxes;
+mod events;
 
 pub use self::handle::Rend3Handle;
 pub use self::plugin::Rend3Plugin;
 pub use self::ambient::AmbientLight;
+pub use self::events::Rend3SurfaceCreated;
 pub use self::api::{Rend3, Rend3Camera, Rend3Skybox};
 pub use self::surface::{Rend3Surface, Rend3Surfaces};
 pub use self::skyboxes::{Skybox, SkyBoxes};

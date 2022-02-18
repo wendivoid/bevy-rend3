@@ -42,6 +42,7 @@ impl Plugin for Rend3Plugin {
             .init_resource::<SkyBoxes>()
             .init_resource::<Camera>()
             .init_resource::<AmbientLight>()
+            .add_event::<crate::Rend3SurfaceCreated>()
             .add_system(crate::systems::create_surface)
             .add_system(crate::systems::resize_surface)
             .add_system(crate::systems::create_object)
