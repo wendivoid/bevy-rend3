@@ -5,10 +5,12 @@ use rend3::types::{MaterialTag, Mesh, Object, ObjectMeshKind};
 
 use crate::{Rend3, Rend3Handle};
 
+type ObjectComponents<'a> = (Entity, &'a Rend3Handle<Mesh>, &'a Rend3Handle<MaterialTag>, &'a GlobalTransform);
+
 pub fn create_object(
     rend3: Rend3,
     mut commands: Commands,
-    query: Query<(Entity, &Rend3Handle<Mesh>, &Rend3Handle<MaterialTag>, &GlobalTransform), Without<Rend3Handle<Object>>>
+    query: Query<ObjectComponents, Without<Rend3Handle<Object>>>
 ) {
     for (entity, mesh, material, transform) in query.iter() {
         debug!("Creating Object for Entity: {entity:?}");

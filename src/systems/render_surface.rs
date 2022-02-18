@@ -38,7 +38,7 @@ pub fn render_surface(
             &ready,
             &pbr_routine,
             skybox,
-            &tone_mapping,
+            tone_mapping,
             UVec2::new(window.width() as u32, window.height() as u32),
             rend3::types::SampleCount::One,
             ambient.0,

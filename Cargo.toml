@@ -3,6 +3,11 @@ name = "bevy-rend3"
 version = "0.1.0"
 edition = "2021"
 
+[features]
+default = ["x11"]
+x11 = ["bevy_winit/x11"]
+wayland = ["bevy_winit/wayland"]
+
 [dependencies]
 bevy_ecs = "0.6.0"
 bevy_app = "0.6.0"

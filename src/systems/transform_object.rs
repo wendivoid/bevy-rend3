@@ -9,6 +9,6 @@ pub fn transform_object(
     query: Query<(&Rend3Handle<Object>, &GlobalTransform), Changed<GlobalTransform>>
 ) {
     for (object, transform) in query.iter() {
-        rend3.set_object_transform(&object, transform.compute_matrix());
+        rend3.set_object_transform(object, transform.compute_matrix());
     }
 }
