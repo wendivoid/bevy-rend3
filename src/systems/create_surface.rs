@@ -7,13 +7,13 @@ use bevy_winit::WinitWindows;
 use rend3_routine::base::BaseRenderGraph;
 use rend3_routine::tonemapping::TonemappingRoutine;
 
-use crate::{Rend3, Surface, Surfaces};
+use crate::{Rend3, Rend3Surface, Rend3Surfaces};
 
 pub fn create_surface(
     rend3: Rend3,
     windows: Res<WinitWindows>,
     base_render_graph: Res<BaseRenderGraph>,
-    mut surfaces: ResMut<Surfaces>,
+    mut surfaces: ResMut<Rend3Surfaces>,
     mut events: EventReader<WindowCreated>
 ) {
     for WindowCreated { id } in events.iter() {
@@ -37,7 +37,7 @@ pub fn create_surface(
         let tone_mapping =
             TonemappingRoutine::new(&rend3.renderer.0, &base_render_graph.interfaces, format);
 
-        surfaces.surfaces.insert(*id, Surface {
+        surfaces.surfaces.insert(*id, Rend3Surface {
             surface, format, tone_mapping,
         });
     }

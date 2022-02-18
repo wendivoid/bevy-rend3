@@ -4,18 +4,18 @@ use bevy_window::Windows;
 use rend3_routine::base::BaseRenderGraph;
 use rend3_routine::pbr::PbrRoutine;
 
-use crate::{Renderer, Surfaces, Surface, AmbientLight, SkyBoxes};
+use crate::{Renderer, Rend3Surfaces, Rend3Surface, AmbientLight, SkyBoxes};
 
 pub fn render_surface(
     renderer: Res<Renderer>,
-    surfaces: Res<Surfaces>,
+    surfaces: Res<Rend3Surfaces>,
     base_render_graph: Res<BaseRenderGraph>,
     pbr_routine: Res<PbrRoutine>,
     windows: Res<Windows>,
     mut skyboxes: ResMut<SkyBoxes>,
     ambient: Res<AmbientLight>
 ) {
-    for (id, Surface { surface, tone_mapping, .. }) in surfaces.surfaces.iter() {
+    for (id, Rend3Surface { surface, tone_mapping, .. }) in surfaces.surfaces.iter() {
         let window = windows.get(*id).unwrap();
         let frame = rend3::util::output::OutputFrame::Surface {
             surface: surface.clone(),

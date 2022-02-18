@@ -13,7 +13,7 @@ pub use self::handle::Rend3Handle;
 pub use self::plugin::Rend3Plugin;
 pub use self::ambient::AmbientLight;
 pub use self::api::{Rend3, Rend3Camera, Rend3Skybox};
-pub use self::surface::{Surface, Surfaces};
+pub use self::surface::{Rend3Surface, Rend3Surfaces};
 pub use self::skyboxes::{Skybox, SkyBoxes};
 
 use std::sync::Arc;

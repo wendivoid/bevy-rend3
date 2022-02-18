@@ -3,13 +3,13 @@ use bevy_math::UVec2;
 use bevy_utils::tracing::debug;
 use bevy_window::{WindowId, WindowResized};
 
-use crate::{Surfaces, Renderer, Device};
+use crate::{Rend3Surfaces, Renderer, Device};
 
 pub fn resize_surface(
     mut cache: Local<Vec<(WindowId, f32, f32)>>,
     renderer: Res<Renderer>,
     device: Res<Device>,
-    surfaces: Res<Surfaces>,
+    surfaces: Res<Rend3Surfaces>,
     mut events: EventReader<WindowResized>
 ) {
      let mut to_remove = vec![];

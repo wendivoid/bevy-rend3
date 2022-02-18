@@ -4,13 +4,13 @@ use bevy_window::WindowId;
 use rend3::types::TextureFormat;
 use rend3_routine::tonemapping::TonemappingRoutine;
 
-pub struct Surface {
+pub struct Rend3Surface {
     pub surface: Arc<wgpu::Surface>,
     pub format: TextureFormat,
     pub tone_mapping: TonemappingRoutine
 }
 
 #[derive(Default)]
-pub struct Surfaces {
-    pub surfaces: HashMap<WindowId, Surface>
+pub struct Rend3Surfaces {
+    pub surfaces: HashMap<WindowId, Rend3Surface>
 }
