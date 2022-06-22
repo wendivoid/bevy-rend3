@@ -9,13 +9,13 @@ x11 = ["bevy_winit/x11"]
 wayland = ["bevy_winit/wayland"]
 
 [dependencies]
-bevy_ecs = "0.6.0"
-bevy_app = "0.6.0"
-bevy_winit = "0.6.0"
-bevy_window = "0.6.0"
-bevy_utils = "0.6.0"
-bevy_math = "0.6.0"
-bevy_transform = "0.6.0"
+bevy_ecs = "0.7.0"
+bevy_app = "0.7.0"
+bevy_winit = "0.7.0"
+bevy_window = "0.7.0"
+bevy_utils = "0.7.0"
+bevy_math = "0.7.0"
+bevy_transform = "0.7.0"
 
 wgpu = "0.12.0"
 rend3 = "0.3.0"
@@ -25,10 +25,10 @@ rend3-routine = "0.3.0"
 [dev-dependencies]
 gltf = "0.16.0"
 image = "0.24.0"
-bevy_log = "0.6.0"
-bevy_core = "0.6.0"
-bevy_input = "0.6.0"
+bevy_log = "0.7.0"
+bevy_core = "0.7.0"
+bevy_input = "0.7.0"
 rend3-gltf = "0.3.0"
 rend3-anim = "0.3.0"
-bevy_diagnostic = "0.6.0"
-bevy_winit = { version = "0.6.0", features = ["x11"] }
+bevy_diagnostic = "0.7.0"
+bevy_winit = { version = "0.7.0", features = ["x11"] }

@@ -11,7 +11,7 @@ use crate::{Rend3, Rend3Surface, Rend3Surfaces, Rend3SurfaceCreated};
 
 pub fn create_surface(
     rend3: Rend3,
-    windows: Res<WinitWindows>,
+    windows: NonSend<WinitWindows>,
     base_render_graph: Res<BaseRenderGraph>,
     mut surfaces: ResMut<Rend3Surfaces>,
     mut events: EventReader<WindowCreated>,
